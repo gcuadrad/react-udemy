@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Movie from './Movie';
+import Sidebar from './Sidebar';
+import Slider from './Slider';
 
 class Movies extends Component {
   state = {
@@ -23,31 +25,38 @@ class Movies extends Component {
   render(){
     return (
       <React.Fragment>
-        <div id='content' className='movies'>
-          <h2 className="subheader">Movies</h2>
-          <p>Recommended movies by the user {this.state.user}</p>
-          {/* simple condition */}
-          {/* { this.state.favorite.title &&
-            <strong>Your favorite movie is the number {this.state.favoriteIndex}, {this.state.favorite.title}!</strong>
-          } */}
-          {/* ternary condition */}
-          { this.state.favorite.title ? (
-            <strong>Your favorite movie is the number {this.state.favoriteIndex}, {this.state.favorite.title}!</strong>
-          ) : (
-            <strong>Select a movie from the list!</strong>
-          )}
-          {
-            this.state.movies.map((movie, i) => {
-              return (
-                <Movie
-                  key={i}
-                  movie={movie}
-                  markAsFavorite={this.favorite}
-                  index={i}
-                />
-              )
-            })
-          }
+        <Slider
+          title="Movies"
+          size="slider-small"
+        />
+        <div className='center'>
+          <div id='content' className='movies'>
+            <h2 className="subheader">Movies</h2>
+            <p>Recommended movies by the user {this.state.user}</p>
+            {/* simple condition */}
+            {/* { this.state.favorite.title &&
+              <strong>Your favorite movie is the number {this.state.favoriteIndex}, {this.state.favorite.title}!</strong>
+            } */}
+            {/* ternary condition */}
+            { this.state.favorite.title ? (
+              <strong>Your favorite movie is the number {this.state.favoriteIndex}, {this.state.favorite.title}!</strong>
+            ) : (
+              <strong>Select a movie from the list!</strong>
+            )}
+            {
+              this.state.movies.map((movie, i) => {
+                return (
+                  <Movie
+                    key={i}
+                    movie={movie}
+                    markAsFavorite={this.favorite}
+                    index={i}
+                  />
+                )
+              })
+            }
+          </div>
+          <Sidebar />
         </div>
       </React.Fragment>
     )
